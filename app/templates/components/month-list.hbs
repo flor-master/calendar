@@ -1,0 +1,32 @@
+<div class="container">
+    <div class="calendar-header">
+        <div class="controls">
+            <h3 class="controls__curent-month">{{full-month viewDate.month}} <span>{{viewDate.year}}</span>{{viewDate.daysInMonth}}</h3>
+
+            <div class="controls__btn">
+                <button {{action "getPrevMonth"}}>&lt;</button>
+                <button {{action "getCurrentMonth"}}> Today </button>
+                <button {{action "getNextMonth"}}>&gt;</button>
+            </div>
+        </div>
+        <div class="day-list">
+            {{#each dayList as |fullDay|}}
+                <div class="day-list__item">{{fullDay.name}}</div>
+            {{/each}}
+        </div>
+    </div>
+    <div class="calendar">
+        {{#each totalDaysList as |day|}}
+            <div class="calendar__item">
+                <div class="calendar__day {{if day.showMonth '-current-month'}} {{past-future day.currentDate}}">
+
+                      <span class="calendar__day__date">{{day.day}}</span>
+                      {{#if day.showMonthTitle}}
+                        <span class="calendar__day__month">{{full-month day.month "short"}}</span>
+                      {{/if}}
+
+                </div>
+            </div>
+        {{/each}}
+    </div>
+</div>
